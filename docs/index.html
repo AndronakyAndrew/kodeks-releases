@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0A1315">
+
+<title>Genesis Кодекс+ — офлайн-база законодательства ПМР</title>
+<meta name="description" content="Genesis Кодекс+ — приложение для Android с полным текстом законодательства Приднестровской Молдавской Республики. Работает без интернета: поиск, перекрёстные ссылки, закладки и заметки.">
+
+<meta property="og:title" content="Genesis Кодекс+ — законодательство ПМР офлайн">
+<meta property="og:description" content="Приложение для Android с полным текстом законодательства ПМР для работы без интернета: поиск по всем актам, перекрёстные ссылки, закладки и заметки.">
+<meta property="og:url" content="https://andronakyandrew.github.io/kodeks-releases/">
+<link rel="canonical" href="https://andronakyandrew.github.io/kodeks-releases/">
+
+<script>
+  /*
+   * ЕДИНСТВЕННОЕ место, которое нужно менять при выпуске новой версии.
+   * Значения ниже в разметке (версия, размер, дата, таблица актов,
+   * контрольная сумма, история версий) продублированы как статический
+   * fallback для пользователей с отключённым JavaScript — держите их
+   * в синхроне с этим объектом. Скрипт в конце страницы автоматически
+   * перерисовывает их из RELEASE, когда JavaScript включён.
+   */
+  var RELEASE = {
+    appName: "Genesis Кодекс+",
+    version: "1.0.0",
+    buildDate: "08.08.2026",
+    sizeMb: 41,
+    minAndroid: "8.0",
+    downloadUrl: "https://github.com/AndronakyAndrew/kodeks-releases/releases/latest/download/genesis-kodeks-plus.apk",
+    sha256: "dacb797c848b5ec55e7e8851171ddba4383ae7883208794ff583fb2118af8fa2",
+    acts: [
+      { name: "Конституция ПМР",                              number: "—",        date: "01.07.2026", articles: 114 },
+      { name: "Гражданский кодекс ПМР",                        number: "ЗМР-63",   date: "01.07.2026", articles: 1201 },
+      { name: "Уголовный кодекс ПМР",                          number: "ЗМР-19",   date: "01.07.2026", articles: 386 },
+      { name: "Уголовно-процессуальный кодекс ПМР",            number: "ЗМР-24",   date: "01.07.2026", articles: 474 },
+      { name: "Гражданский процессуальный кодекс ПМР",         number: "ЗМР-24-3", date: "01.07.2026", articles: 445 },
+      { name: "Кодекс ПМР об административных правонарушениях", number: "ЗМР-48",  date: "01.07.2026", articles: 612 },
+      { name: "Трудовой кодекс ПМР",                           number: "ЗМР-77",   date: "01.07.2026", articles: 423 },
+      { name: "Налоговый кодекс ПМР",                          number: "ЗМР-30",   date: "01.07.2026", articles: 398 },
+      { name: "Семейный кодекс ПМР",                           number: "ЗМР-16",   date: "01.07.2026", articles: 176 },
+      { name: "Земельный кодекс ПМР",                          number: "ЗМР-63-2", date: "01.07.2026", articles: 154 }
+    ],
+    changelog: [
+      {
+        version: "1.0.0",
+        date: "08.08.2026",
+        notes: "Первый публичный релиз: офлайн-база актов законодательства ПМР, полнотекстовый поиск, переход по перекрёстным ссылкам, копирование статей с реквизитами, закладки и заметки, светлая и тёмная темы."
+      }
+    ]
+  };
+</script>
+
+<style>
+  :root {
+    --bg: #0A1315;
+    --surface: #0F1B1E;
+    --border: #1D3237;
+    --accent: #14E8C4;
+    --text: #D7DEDF;
+    --text-muted: #7C9296;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: var(--bg); }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+  }
+
+  section {
+    margin-top: 48px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+
+  h2.subtitle {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin: 0 0 20px;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    margin: 0 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  p { margin: 0 0 12px; }
+
+  .lede {
+    color: var(--text);
+    font-size: 1rem;
+    max-width: 60ch;
+  }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .btn-download {
+    display: inline-block;
+    background: var(--accent);
+    color: #06201C;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    border: none;
+  }
+
+  .btn-download:hover,
+  .btn-download:focus {
+    filter: brightness(1.08);
+  }
+
+  .release-meta {
+    margin-top: 14px;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+  }
+
+  .release-meta span {
+    white-space: nowrap;
+  }
+
+  .release-meta .sep {
+    margin: 0 8px;
+    color: var(--border);
+  }
+
+  ul.features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul.features li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  ul.features li:last-child {
+    border-bottom: none;
+  }
+
+  ul.features li::before {
+    content: "— ";
+    color: var(--accent);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+
+  caption {
+    caption-side: bottom;
+    text-align: left;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    padding-top: 10px;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  th {
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  td.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+  }
+
+  ol.steps {
+    margin: 0;
+    padding-left: 1.3em;
+  }
+
+  ol.steps li {
+    margin-bottom: 16px;
+    padding-left: 4px;
+  }
+
+  ol.steps li:last-child {
+    margin-bottom: 0;
+  }
+
+  .note {
+    display: block;
+    margin-top: 6px;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+  }
+
+  .checksum-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  code.sha {
+    font-family: var(--font-mono);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    word-break: break-all;
+    flex: 1 1 320px;
+  }
+
+  button.copy-btn {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 0 0 auto;
+  }
+
+  button.copy-btn:hover {
+    background: rgba(20, 232, 196, 0.1);
+  }
+
+  .verify-note {
+    margin-top: 14px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .disclaimer {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    border-left: 2px solid var(--border);
+    padding-left: 16px;
+  }
+
+  ul.changelog {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul.changelog li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  ul.changelog li:last-child {
+    border-bottom: none;
+  }
+
+  .changelog-head {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+
+  .changelog-version {
+    color: var(--accent);
+    font-weight: 700;
+    font-family: var(--font-mono);
+  }
+
+  .changelog-date {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .changelog-notes {
+    color: var(--text);
+    font-size: 0.92rem;
+  }
+
+  footer {
+    margin-top: 56px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 480px) {
+    main { padding: 32px 16px 60px; }
+    h1 { font-size: 1.6rem; }
+    .btn-download { width: 100%; text-align: center; }
+    .checksum-row { flex-direction: column; align-items: stretch; }
+    button.copy-btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <header>
+    <h1>Genesis Кодекс+</h1>
+    <h2 class="subtitle">Законодательство ПМР офлайн</h2>
+    <p class="lede">
+      Genesis Кодекс+ — приложение для Android с полным текстом действующих
+      кодексов и законов Приднестровской Молдавской Республики. Вся база
+      хранится на устройстве и открывается без подключения к интернету —
+      подходит для юристов, предпринимателей, госслужащих и всех, кому
+      нужен быстрый доступ к тексту закона.
+    </p>
+  </header>
+
+  <section id="download">
+    <a class="btn-download" id="downloadBtn" href="https://github.com/AndronakyAndrew/kodeks-releases/releases/latest/download/genesis-kodeks-plus.apk">Скачать APK</a>
+    <div class="release-meta">
+      <span id="meta-version">Версия 1.0.0</span><span class="sep">·</span><span id="meta-size">41 МБ</span><span class="sep">·</span><span id="meta-date">сборка от 08.08.2026</span><span class="sep">·</span><span id="meta-minos">Android 8.0 и выше</span>
+    </div>
+  </section>
+
+  <section id="features">
+    <h3>Возможности</h3>
+    <ul class="features">
+      <li>Работа без интернета — вся база актов хранится на устройстве</li>
+      <li>Полнотекстовый поиск по всем загруженным актам</li>
+      <li>Переход по перекрёстным ссылкам внутри текста</li>
+      <li>Копирование статьи вместе с реквизитами акта</li>
+      <li>Закладки и заметки</li>
+      <li>Светлая и тёмная темы</li>
+    </ul>
+  </section>
+
+  <section id="acts">
+    <h3>Что загружено</h3>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Акт</th>
+            <th>Номер</th>
+            <th>Дата редакции</th>
+            <th>Статей</th>
+          </tr>
+        </thead>
+        <tbody id="acts-table-body">
+          <tr><td>Конституция ПМР</td><td>—</td><td>01.07.2026</td><td class="num">114</td></tr>
+          <tr><td>Гражданский кодекс ПМР</td><td>ЗМР-63</td><td>01.07.2026</td><td class="num">1201</td></tr>
+          <tr><td>Уголовный кодекс ПМР</td><td>ЗМР-19</td><td>01.07.2026</td><td class="num">386</td></tr>
+          <tr><td>Уголовно-процессуальный кодекс ПМР</td><td>ЗМР-24</td><td>01.07.2026</td><td class="num">474</td></tr>
+          <tr><td>Гражданский процессуальный кодекс ПМР</td><td>ЗМР-24-3</td><td>01.07.2026</td><td class="num">445</td></tr>
+          <tr><td>Кодекс ПМР об административных правонарушениях</td><td>ЗМР-48</td><td>01.07.2026</td><td class="num">612</td></tr>
+          <tr><td>Трудовой кодекс ПМР</td><td>ЗМР-77</td><td>01.07.2026</td><td class="num">423</td></tr>
+          <tr><td>Налоговый кодекс ПМР</td><td>ЗМР-30</td><td>01.07.2026</td><td class="num">398</td></tr>
+          <tr><td>Семейный кодекс ПМР</td><td>ЗМР-16</td><td>01.07.2026</td><td class="num">176</td></tr>
+          <tr><td>Земельный кодекс ПМР</td><td>ЗМР-63-2</td><td>01.07.2026</td><td class="num">154</td></tr>
+        </tbody>
+        <caption>10 актов · по состоянию на дату сборки, указанную выше</caption>
+      </table>
+    </div>
+  </section>
+
+  <section id="install">
+    <h3>Как установить</h3>
+    <ol class="steps">
+      <li>Скачайте APK-файл, нажав кнопку «Скачать APK» в начале страницы.</li>
+      <li>Откройте скачанный файл — через панель уведомлений браузера или через приложение «Файлы».</li>
+      <li>
+        Если система запросит разрешение на установку из неизвестных источников — разрешите его
+        для браузера или файлового менеджера, которым вы открываете файл
+        (обычно: Настройки → Приложения → Особый доступ → Установка неизвестных приложений).
+      </li>
+      <li>
+        Google Play Protect может показать предупреждение о том, что приложение не проверено.
+        <span class="note">
+          Это стандартное предупреждение для любых APK, установленных не из Google Play,
+          а не признак того, что конкретно это приложение опасно. Нажмите «Всё равно установить».
+        </span>
+      </li>
+      <li>Дождитесь завершения установки.</li>
+      <li>Запустите Genesis Кодекс+ с главного экрана. При первом запуске приложение распакует базу актов — это может занять до минуты.</li>
+    </ol>
+  </section>
+
+  <section id="verify">
+    <h3>Проверка подлинности</h3>
+    <div class="panel">
+      <div class="checksum-row">
+        <code class="sha" id="sha256-value">dacb797c848b5ec55e7e8851171ddba4383ae7883208794ff583fb2118af8fa2</code>
+        <button class="copy-btn" id="copyBtn" type="button" onclick="copyChecksum()">Копировать</button>
+      </div>
+      <p class="verify-note">Сверьте эту сумму с SHA-256 скачанного файла, чтобы убедиться, что APK не был подменён или повреждён при загрузке.</p>
+    </div>
+  </section>
+
+  <section id="disclaimer">
+    <p class="disclaimer">
+      Приложение подготовлено независимо и не является официальным изданием.
+      Тексты актов приведены в информационных целях и могут не отражать
+      самые последние изменения. Для официального использования — в суде,
+      органах власти, при подаче документов — руководствуйтесь текстами,
+      опубликованными в Сборнике актов законодательства ПМР (САЗ) и на
+      официальных ресурсах органов государственной власти ПМР.
+    </p>
+  </section>
+
+  <section id="changelog">
+    <h3>История версий</h3>
+    <ul class="changelog" id="changelog-list">
+      <li>
+        <div class="changelog-head">
+          <span class="changelog-version">1.0.0</span>
+          <span class="changelog-date">08.08.2026</span>
+        </div>
+        <div class="changelog-notes">Первый публичный релиз: офлайн-база актов законодательства ПМР, полнотекстовый поиск, переход по перекрёстным ссылкам, копирование статей с реквизитами, закладки и заметки, светлая и тёмная темы.</div>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    Genesis Кодекс+ — независимый проект. Не является официальным ресурсом органов государственной власти ПМР.
+  </footer>
+
+</main>
+
+<script>
+  // Прогрессивное улучшение: перерисовывает динамические блоки из RELEASE.
+  // Без JavaScript остаётся статическая разметка выше — она уже содержит
+  // те же значения.
+  (function () {
+    function $(id) { return document.getElementById(id); }
+
+    $("downloadBtn").setAttribute("href", RELEASE.downloadUrl);
+    $("meta-version").textContent = "Версия " + RELEASE.version;
+    $("meta-size").textContent = RELEASE.sizeMb + " МБ";
+    $("meta-date").textContent = "сборка от " + RELEASE.buildDate;
+    $("meta-minos").textContent = "Android " + RELEASE.minAndroid + " и выше";
+
+    var tbody = $("acts-table-body");
+    tbody.innerHTML = "";
+    RELEASE.acts.forEach(function (act) {
+      var tr = document.createElement("tr");
+      tr.innerHTML =
+        "<td>" + act.name + "</td>" +
+        "<td>" + act.number + "</td>" +
+        "<td>" + act.date + "</td>" +
+        "<td class=\"num\">" + act.articles + "</td>";
+      tbody.appendChild(tr);
+    });
+
+    $("sha256-value").textContent = RELEASE.sha256;
+
+    var list = $("changelog-list");
+    list.innerHTML = "";
+    RELEASE.changelog.forEach(function (entry) {
+      var li = document.createElement("li");
+      li.innerHTML =
+        "<div class=\"changelog-head\">" +
+          "<span class=\"changelog-version\">" + entry.version + "</span>" +
+          "<span class=\"changelog-date\">" + entry.date + "</span>" +
+        "</div>" +
+        "<div class=\"changelog-notes\">" + entry.notes + "</div>";
+      list.appendChild(li);
+    });
+  })();
+
+  function copyChecksum() {
+    var text = RELEASE.sha256;
+    var btn = document.getElementById("copyBtn");
+    var reset = function () {
+      setTimeout(function () { btn.textContent = "Копировать"; }, 2000);
+    };
+    var onDone = function (ok) {
+      btn.textContent = ok ? "Скопировано" : "Не удалось скопировать";
+      reset();
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { onDone(true); }, function () { onDone(false); });
+      return;
+    }
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try {
+      document.execCommand("copy");
+      onDone(true);
+    } catch (e) {
+      onDone(false);
+    }
+    document.body.removeChild(ta);
+  }
+</script>
+</body>
+</html>
