@@ -3,57 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0A1315">
-
-<title>Genesis Кодекс+ — офлайн-база законодательства ПМР</title>
-<meta name="description" content="Genesis Кодекс+ — приложение для Android с полным текстом законодательства Приднестровской Молдавской Республики. Работает без интернета: поиск, перекрёстные ссылки, закладки и заметки.">
-
-<meta property="og:title" content="Genesis Кодекс+ — законодательство ПМР офлайн">
-<meta property="og:description" content="Приложение для Android с полным текстом законодательства ПМР для работы без интернета: поиск по всем актам, перекрёстные ссылки, закладки и заметки.">
-<meta property="og:url" content="https://andronakyandrew.github.io/kodeks-releases/">
-<link rel="canonical" href="https://andronakyandrew.github.io/kodeks-releases/">
+<meta name="theme-color" content="#080B0C">
 
 <script>
   /*
-   * ЕДИНСТВЕННОЕ место, которое нужно менять при выпуске новой версии.
-   * Значения ниже в разметке (версия, размер, дата, таблица актов,
-   * контрольная сумма, история версий) продублированы как статический
-   * fallback для пользователей с отключённым JavaScript — держите их
-   * в синхроне с этим объектом. Скрипт в конце страницы автоматически
-   * перерисовывает их из RELEASE, когда JavaScript включён.
+   * Единственное место, которое правится при выпуске новой версии.
+   * Значения ниже уже продублированы в статической разметке страницы
+   * (версия, ссылка на APK, контрольная сумма, таблица актов, история
+   * версий) — это нужно, чтобы страница оставалась осмысленной при
+   * отключённом JavaScript. Скрипт в конце страницы перерисовывает их
+   * из этого объекта, когда JavaScript включён. Саму разметку скрипт
+   * релиза не трогает.
    */
-  var RELEASE = {
-    appName: "Genesis Кодекс+",
+  const RELEASE = {
     version: "1.0.0",
-    buildDate: "08.08.2026",
-    sizeMb: 41.0,
-    minAndroid: "8.0",
-    downloadUrl: "https://github.com/AndronakyAndrew/kodeks-releases/releases/download/v1.0.0/genesis-kodeks-1.0.0.apk",
+    versionCode: 1,
+    date: "2026-08-15",
+    sizeMb: "41",
+    apkUrl: "https://github.com/andronakyandrew/kodeks-releases/releases/download/v1.0.0/genesis-kodeks-1.0.0.apk",
     sha256: "ac2265a607b5ba089371199f43b28ac28ed3561b222eacf4885cb2fdfd4d6195",
+    minAndroid: "8.0",
+    telegramUrl: "",
     acts: [
-      { name: "Конституция ПМР",                              number: "—",        date: "01.07.2026", articles: 114 },
-      { name: "Гражданский кодекс ПМР",                        number: "ЗМР-63",   date: "01.07.2026", articles: 1201 }
+      { title: "Конституция ПМР",        number: "", redaction: "10.07.2025", articles: 121 },
+      { title: "Гражданский кодекс ПМР", number: "", redaction: "",           articles: 1578 }
     ],
-    changelog: [
-      {
-        version: "1.0.0",
-        date: "08.08.2026",
-        notes: "Первый публичный релиз Genesis Кодекс+.\n\n- офлайн-база законодательства ПМР: Конституция и Гражданский кодекс, работает без интернета\n- полнотекстовый поиск по всем актам\n- переходы по перекрёстным ссылкам между статьями\n- закладки с папками и заметки к статьям\n- копирование статьи с реквизитами\n- светлая и тёмная темы, настройка размера шрифта"
-      }
+    history: [
+      { version: "1.0.0", date: "2026-08-15", changes: "Первый выпуск. Конституция ПМР и Гражданский кодекс ПМР." }
     ]
   };
 </script>
 
+<title>Genesis Кодекс+ — офлайн-база законодательства ПМР</title>
+<meta name="description" content="Genesis Кодекс+ — приложение для Android с полным текстом законодательства Приднестровской Молдавской Республики. Работает без интернета: поиск по всем актам, перекрёстные ссылки, закладки и заметки.">
+
+<meta property="og:title" content="Genesis Кодекс+ — законодательство ПМР офлайн">
+<meta property="og:description" content="Приложение для Android с полным текстом законодательства ПМР для работы без интернета: поиск по всем актам, перекрёстные ссылки, закладки и заметки.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://andronakyandrew.github.io/kodeks-releases/">
+<link rel="canonical" href="https://andronakyandrew.github.io/kodeks-releases/">
+
 <style>
   :root {
-    --bg: #0A1315;
-    --surface: #0F1B1E;
-    --border: #1D3237;
-    --accent: #14E8C4;
-    --text: #D7DEDF;
-    --text-muted: #7C9296;
-    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    --bg: #080B0C;
+    --surface: #0B1012;
+    --surface-hover: #0E1416;
+    --border: #161D21;
+    --border-soft: #1C2429;
+    --accent: #2EE6B0;
+    --accent-strong: #5EEEC4;
+    --text: #E9EEF0;
+    --text-secondary: #C6D2D6;
+    --text-muted: #8B9AA1;
+    --text-faint: #5F7078;
+    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   }
 
   * { box-sizing: border-box; }
@@ -69,101 +73,376 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  main {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 48px 20px 80px;
+  ::selection {
+    background: var(--accent);
+    color: #06110D;
   }
 
-  section {
-    margin-top: 48px;
-  }
-
-  h1 {
-    font-size: 2rem;
-    margin: 0 0 4px;
-    letter-spacing: -0.01em;
-  }
-
-  h2.subtitle {
-    font-size: 1.05rem;
-    font-weight: 500;
+  a {
     color: var(--accent);
-    margin: 0 0 20px;
+    text-decoration: none;
   }
 
-  h3 {
-    font-size: 1.15rem;
-    margin: 0 0 16px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
+  a:hover,
+  a:focus-visible {
+    color: var(--accent-strong);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
   }
 
   p { margin: 0 0 12px; }
 
-  .lede {
-    color: var(--text);
-    font-size: 1rem;
-    max-width: 60ch;
-  }
+  /* Шапка */
 
-  .panel {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-  }
-
-  .btn-download {
-    display: inline-block;
-    background: var(--accent);
-    color: #06201C;
-    font-weight: 700;
-    font-size: 1.05rem;
-    text-decoration: none;
-    padding: 14px 28px;
-    border-radius: 8px;
-    border: none;
-  }
-
-  .btn-download:hover,
-  .btn-download:focus {
-    filter: brightness(1.08);
-  }
-
-  .release-meta {
-    margin-top: 14px;
-    color: var(--text-muted);
-    font-size: 0.92rem;
-  }
-
-  .release-meta span {
-    white-space: nowrap;
-  }
-
-  .release-meta .sep {
-    margin: 0 8px;
-    color: var(--border);
-  }
-
-  ul.features {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  ul.features li {
-    padding: 10px 0;
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(8, 11, 12, .86);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
   }
 
-  ul.features li:last-child {
-    border-bottom: none;
+  .site-header-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
   }
 
-  ul.features li::before {
-    content: "— ";
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .brand-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 2px;
+    flex: none;
+  }
+
+  .brand-name {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: none;
+  }
+
+  .nav-version {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: var(--text-faint);
+  }
+
+  .btn-nav {
+    display: inline-flex;
+    align-items: center;
+    height: 34px;
+    padding: 0 16px;
+    background: var(--accent);
+    color: #06110D;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .btn-nav:hover,
+  .btn-nav:focus-visible {
+    background: var(--accent-strong);
+    color: #06110D;
+  }
+
+  /* Каркас страницы */
+
+  main {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 20px 90px;
+  }
+
+  section {
+    padding-top: 64px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
     color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2.1rem, 7vw, 3.2rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  h1 .plus {
+    color: var(--accent);
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.55rem;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* Хиро */
+
+  .hero {
+    padding-top: 60px;
+  }
+
+  .eyebrow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: 22px;
+  }
+
+  .eyebrow .sep {
+    color: var(--border-soft);
+  }
+
+  .eyebrow .muted {
+    color: var(--text-muted);
+  }
+
+  .tagline {
+    margin: 20px 0 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    max-width: 22ch;
+  }
+
+  .lede {
+    margin: 18px 0 0;
+    color: var(--text-muted);
+    font-size: 1rem;
+    max-width: 56ch;
+  }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 52px;
+    padding: 0 26px;
+    background: var(--accent);
+    color: #06110D;
+    border-radius: 12px;
+    font-size: 1.02rem;
+    font-weight: 700;
+  }
+
+  .btn-download:hover,
+  .btn-download:focus-visible {
+    background: var(--accent-strong);
+    color: #06110D;
+  }
+
+  .btn-download .badge {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    opacity: 0.62;
+  }
+
+  .cta-note {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-faint);
+  }
+
+  .hero-grid {
+    display: block;
+  }
+
+  .device-frame {
+    max-width: 260px;
+    margin: 44px auto 0;
+    border: 1px solid var(--border-soft);
+    border-radius: 32px;
+    padding: 8px;
+    background: #0C1113;
+    box-shadow: 0 30px 70px -40px rgba(0, 0, 0, .9);
+  }
+
+  .device-screen {
+    width: 100%;
+    display: block;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #0A0F11;
+  }
+
+  @media (min-width: 680px) {
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 260px);
+      align-items: center;
+      gap: 40px;
+    }
+
+    .device-frame {
+      width: 260px;
+      max-width: 260px;
+      margin: 0 0 0 auto;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .site-header-inner { padding: 0 32px; }
+    main { padding: 0 32px 100px; }
+
+    .hero-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 320px);
+      gap: 64px;
+    }
+
+    .device-frame {
+      width: 320px;
+      max-width: 320px;
+    }
+
+    .feature-card { min-height: 168px; }
+  }
+
+  .device-screen img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Полоса характеристик */
+
+  .specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 56px 0 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .spec {
+    padding: 22px 16px;
+    border-left: 1px solid var(--border);
+  }
+
+  .spec:first-child {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .spec dt {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    margin-bottom: 8px;
+  }
+
+  .spec dd {
+    margin: 0;
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* Возможности */
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .feature-card {
+    background: var(--surface);
+    padding: 26px 22px;
+  }
+
+  .feature-card:hover {
+    background: var(--surface-hover);
+  }
+
+  .feature-mark {
+    width: 22px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 18px;
+  }
+
+  .feature-title {
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .feature-desc {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+
+  /* Таблица актов */
+
+  .table-scroll {
+    overflow-x: auto;
   }
 
   table {
@@ -175,192 +454,430 @@
   caption {
     caption-side: bottom;
     text-align: left;
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    padding-top: 10px;
+    font-family: var(--font-mono);
+    color: var(--text-faint);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    padding-top: 14px;
   }
 
   th, td {
     text-align: left;
-    padding: 10px 8px;
-    border-bottom: 1px solid var(--border);
+    padding: 14px 10px;
+    border-bottom: 1px solid var(--border-soft);
   }
 
-  th {
-    color: var(--text-muted);
-    font-weight: 600;
-    font-size: 0.82rem;
+  thead th {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.68rem;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.1em;
+  }
+
+  tbody tr:hover {
+    background: var(--surface-hover);
   }
 
   td.num {
     text-align: right;
+    font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
   }
 
-  .table-scroll {
-    overflow-x: auto;
-  }
-
-  ol.steps {
-    margin: 0;
-    padding-left: 1.3em;
-  }
-
-  ol.steps li {
-    margin-bottom: 16px;
-    padding-left: 4px;
-  }
-
-  ol.steps li:last-child {
-    margin-bottom: 0;
-  }
-
-  .note {
-    display: block;
-    margin-top: 6px;
+  td:not(.num):not(:first-child) {
+    font-family: var(--font-mono);
     color: var(--text-muted);
-    font-size: 0.88rem;
+    font-size: 0.85rem;
+  }
+
+  /* Установка */
+
+  .steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .step-num {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    flex: none;
+    padding-top: 2px;
+  }
+
+  .step-title {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  .step-note {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
+  /* Проверка подлинности */
+
+  .verify-panel {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 26px;
+  }
+
+  .verify-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    margin-bottom: 14px;
   }
 
   .checksum-row {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
+    align-items: stretch;
+    gap: 12px;
   }
 
   code.sha {
     font-family: var(--font-mono);
     background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 10px 12px;
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    padding: 12px 14px;
     font-size: 0.85rem;
+    line-height: 1.5;
     word-break: break-all;
-    flex: 1 1 320px;
+    flex: 1 1 260px;
+    color: var(--text-secondary);
   }
 
   button.copy-btn {
     background: transparent;
     color: var(--accent);
     border: 1px solid var(--accent);
-    border-radius: 6px;
-    padding: 10px 16px;
+    border-radius: 10px;
+    padding: 10px 20px;
     font-family: var(--font-sans);
     font-size: 0.88rem;
     font-weight: 600;
     cursor: pointer;
-    flex: 0 0 auto;
+    flex: none;
+    min-width: 130px;
   }
 
   button.copy-btn:hover {
-    background: rgba(20, 232, 196, 0.1);
+    background: rgba(46, 230, 176, 0.12);
   }
 
   .verify-note {
-    margin-top: 14px;
+    margin-top: 16px;
+    margin-bottom: 0;
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
+  }
+
+  /* Обновления и дисклеймер */
+
+  .updates-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .updates-note {
+    color: var(--text-muted);
+    font-size: 1rem;
   }
 
   .disclaimer {
     color: var(--text-muted);
-    font-size: 0.88rem;
-    border-left: 2px solid var(--border);
-    padding-left: 16px;
-  }
-
-  ul.changelog {
-    list-style: none;
+    font-size: 0.86rem;
+    line-height: 1.6;
+    border-left: 2px solid var(--accent);
+    padding: 2px 0 2px 18px;
     margin: 0;
-    padding: 0;
   }
 
-  ul.changelog li {
-    padding: 14px 0;
+  /* История версий */
+
+  .history-row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 20px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .history-row:last-child {
     border-bottom: 1px solid var(--border);
   }
 
-  ul.changelog li:last-child {
-    border-bottom: none;
-  }
-
-  .changelog-head {
-    display: flex;
-    gap: 10px;
-    align-items: baseline;
-    margin-bottom: 4px;
-  }
-
-  .changelog-version {
-    color: var(--accent);
-    font-weight: 700;
+  .history-version {
+    display: block;
     font-family: var(--font-mono);
-  }
-
-  .changelog-date {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-  }
-
-  .changelog-notes {
+    font-size: 1rem;
+    font-weight: 600;
     color: var(--text);
-    font-size: 0.92rem;
   }
+
+  .history-date {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    margin-top: 4px;
+  }
+
+  .history-changes {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+  }
+
+  /* Футер */
 
   footer {
-    margin-top: 56px;
-    color: var(--text-muted);
-    font-size: 0.8rem;
+    margin-top: 80px;
+    padding: 36px 0 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+  }
+
+  /* Адаптив */
+
+  @media (max-width: 680px) {
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .updates-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .steps { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 560px) {
+    .specs { grid-template-columns: repeat(2, 1fr); }
+    .spec:nth-child(2n+1) { border-left: none; padding-left: 0; }
+    .spec:nth-child(n+3) { border-top: 1px solid var(--border); padding-top: 22px; }
+
+    .history-row { grid-template-columns: 1fr; gap: 6px; }
+
+    table, thead, tbody, tr, th, td {
+      display: block;
+      width: 100%;
+    }
+
+    thead {
+      position: absolute;
+      left: -9999px;
+    }
+
+    tbody tr {
+      margin-bottom: 12px;
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
+      padding: 4px 14px;
+      background: var(--surface);
+    }
+
+    tbody tr:hover {
+      background: var(--surface);
+    }
+
+    tbody tr:last-child {
+      margin-bottom: 0;
+    }
+
+    td {
+      border-bottom: 1px solid var(--border-soft);
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    td:last-child {
+      border-bottom: none;
+    }
+
+    td::before {
+      content: attr(data-label);
+      font-family: var(--font-mono);
+      color: var(--text-faint);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      flex: none;
+    }
+
+    td.num {
+      text-align: left;
+    }
+
+    td:empty {
+      display: none;
+    }
+
+    caption {
+      padding-top: 6px;
+    }
+  }
+
+  @media (max-width: 440px) {
+    .features-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 480px) {
-    main { padding: 32px 16px 60px; }
-    h1 { font-size: 1.6rem; }
-    .btn-download { width: 100%; text-align: center; }
+    .site-header-inner { padding: 0 16px; }
+    main { padding: 0 16px 70px; }
+    .hero { padding-top: 44px; }
+    .btn-download { width: 100%; justify-content: center; }
     .checksum-row { flex-direction: column; align-items: stretch; }
     button.copy-btn { width: 100%; }
+    footer { flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
 <body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span class="brand-name">GENESIS INDUSTRIES CORP</span>
+    </div>
+    <div class="nav-right">
+      <span class="nav-version" id="nav-version">v1.0.0</span>
+      <a class="btn-nav js-download" href="https://github.com/andronakyandrew/kodeks-releases/releases/download/v1.0.0/genesis-kodeks-1.0.0.apk">Скачать APK</a>
+    </div>
+  </div>
+</header>
+
 <main>
 
-  <header>
-    <h1>Genesis Кодекс+</h1>
-    <h2 class="subtitle">Законодательство ПМР офлайн</h2>
-    <p class="lede">
-      Genesis Кодекс+ — приложение для Android с полным текстом действующих
-      кодексов и законов Приднестровской Молдавской Республики. Вся база
-      хранится на устройстве и открывается без подключения к интернету —
-      подходит для юристов, предпринимателей, госслужащих и всех, кому
-      нужен быстрый доступ к тексту закона.
-    </p>
-  </header>
+  <section class="hero" id="top">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow">
+          <span>ANDROID</span><span class="sep">/</span><span class="muted">РАБОТАЕТ БЕЗ ИНТЕРНЕТА</span>
+        </p>
+        <h1>Genesis Кодекс<span class="plus">+</span></h1>
+        <p class="tagline">Законодательство ПМР у вас в кармане</p>
+        <p class="lede">
+          Тексты кодексов и законов Приднестровской Молдавской Республики для юристов,
+          предпринимателей, госслужащих и всех, кому нужен быстрый доступ к норме.
+          В отличие от сайта vspmr.org приложение работает полностью офлайн и ищет
+          сразу по всем загруженным актам одним запросом.
+        </p>
+        <div class="cta-row">
+          <a class="btn-download js-download" href="https://github.com/andronakyandrew/kodeks-releases/releases/download/v1.0.0/genesis-kodeks-1.0.0.apk">
+            Скачать APK
+            <span class="badge" id="cta-size">41 МБ</span>
+          </a>
+          <span class="cta-note">без Google Play · без регистрации</span>
+        </div>
+      </div>
 
-  <section id="download">
-    <a class="btn-download" id="downloadBtn" href="https://github.com/AndronakyAndrew/kodeks-releases/releases/latest/download/genesis-kodeks-plus.apk">Скачать APK</a>
-    <div class="release-meta">
-      <span id="meta-version">Версия 1.0.0</span><span class="sep">·</span><span id="meta-size">41 МБ</span><span class="sep">·</span><span id="meta-date">сборка от 08.08.2026</span><span class="sep">·</span><span id="meta-minos">Android 8.0 и выше</span>
+      <div class="device-frame">
+        <div class="device-screen">
+          <img src="assets/search.png" alt="Экран поиска: запрос «ст 45» и результаты по Конституции ПМР и Гражданскому кодексу ПМР" width="720" height="1494" loading="lazy">
+        </div>
+      </div>
     </div>
+
+    <dl class="specs">
+      <div class="spec">
+        <dt>Версия</dt>
+        <dd id="spec-version">1.0.0</dd>
+      </div>
+      <div class="spec">
+        <dt>Сборка</dt>
+        <dd id="spec-date">15 августа 2026</dd>
+      </div>
+      <div class="spec">
+        <dt>Размер</dt>
+        <dd id="spec-size">41 МБ</dd>
+      </div>
+      <div class="spec">
+        <dt>Требования</dt>
+        <dd id="spec-minos">Android 8.0+</dd>
+      </div>
+    </dl>
   </section>
 
   <section id="features">
-    <h3>Возможности</h3>
-    <ul class="features">
-      <li>Работа без интернета — вся база актов хранится на устройстве</li>
-      <li>Полнотекстовый поиск по всем загруженным актам</li>
-      <li>Переход по перекрёстным ссылкам внутри текста</li>
-      <li>Копирование статьи вместе с реквизитами акта</li>
-      <li>Закладки и заметки</li>
-      <li>Светлая и тёмная темы</li>
-    </ul>
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>Возможности</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-mark"></div>
+        <div class="feature-title">Работа без интернета</div>
+        <div class="feature-desc">Все акты хранятся в приложении. Связь не нужна ни для чтения, ни для поиска.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-mark"></div>
+        <div class="feature-title">Полнотекстовый поиск</div>
+        <div class="feature-desc">Один запрос — результаты сразу по всем загруженным актам.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-mark"></div>
+        <div class="feature-title">Перекрёстные ссылки</div>
+        <div class="feature-desc">Переход к упомянутой статье прямо из текста, без ручного поиска.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-mark"></div>
+        <div class="feature-title">Копирование с реквизитами</div>
+        <div class="feature-desc">Статья копируется вместе с готовыми реквизитами — можно сразу в документ.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-mark"></div>
+        <div class="feature-title">Закладки, папки, заметки</div>
+        <div class="feature-desc">Собственная структура для дел и тем, к которым вы возвращаетесь.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-mark"></div>
+        <div class="feature-title">Регулируемый шрифт</div>
+        <div class="feature-desc">Размер текста подстраивается под долгое чтение с экрана телефона.</div>
+      </div>
+    </div>
   </section>
 
   <section id="acts">
-    <h3>Что загружено</h3>
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Что загружено</h2>
+    </div>
     <div class="table-scroll">
       <table>
         <thead>
@@ -372,81 +889,108 @@
           </tr>
         </thead>
         <tbody id="acts-table-body">
-          <tr><td>Конституция ПМР</td><td>—</td><td>01.07.2026</td><td class="num">114</td></tr>
-          <tr><td>Гражданский кодекс ПМР</td><td>ЗМР-63</td><td>01.07.2026</td><td class="num">1201</td></tr>
-          <tr><td>Уголовный кодекс ПМР</td><td>ЗМР-19</td><td>01.07.2026</td><td class="num">386</td></tr>
-          <tr><td>Уголовно-процессуальный кодекс ПМР</td><td>ЗМР-24</td><td>01.07.2026</td><td class="num">474</td></tr>
-          <tr><td>Гражданский процессуальный кодекс ПМР</td><td>ЗМР-24-3</td><td>01.07.2026</td><td class="num">445</td></tr>
-          <tr><td>Кодекс ПМР об административных правонарушениях</td><td>ЗМР-48</td><td>01.07.2026</td><td class="num">612</td></tr>
-          <tr><td>Трудовой кодекс ПМР</td><td>ЗМР-77</td><td>01.07.2026</td><td class="num">423</td></tr>
-          <tr><td>Налоговый кодекс ПМР</td><td>ЗМР-30</td><td>01.07.2026</td><td class="num">398</td></tr>
-          <tr><td>Семейный кодекс ПМР</td><td>ЗМР-16</td><td>01.07.2026</td><td class="num">176</td></tr>
-          <tr><td>Земельный кодекс ПМР</td><td>ЗМР-63-2</td><td>01.07.2026</td><td class="num">154</td></tr>
+          <tr>
+            <td data-label="Акт">Конституция ПМР</td>
+            <td data-label="Номер"></td>
+            <td data-label="Дата редакции">10.07.2025</td>
+            <td class="num" data-label="Статей">121</td>
+          </tr>
+          <tr>
+            <td data-label="Акт">Гражданский кодекс ПМР</td>
+            <td data-label="Номер"></td>
+            <td data-label="Дата редакции"></td>
+            <td class="num" data-label="Статей">1578</td>
+          </tr>
         </tbody>
-        <caption>10 актов · по состоянию на дату сборки, указанную выше</caption>
+        <caption id="acts-caption">2 акта · по состоянию на дату сборки, указанную выше</caption>
       </table>
     </div>
   </section>
 
   <section id="install">
-    <h3>Как установить</h3>
-    <ol class="steps">
-      <li>Скачайте APK-файл, нажав кнопку «Скачать APK» в начале страницы.</li>
-      <li>Откройте скачанный файл — через панель уведомлений браузера или через приложение «Файлы».</li>
-      <li>
-        Если система запросит разрешение на установку из неизвестных источников — разрешите его
-        для браузера или файлового менеджера, которым вы открываете файл
-        (обычно: Настройки → Приложения → Особый доступ → Установка неизвестных приложений).
-      </li>
-      <li>
-        Google Play Protect может показать предупреждение о том, что приложение не проверено.
-        <span class="note">
-          Это стандартное предупреждение для любых APK, установленных не из Google Play,
-          а не признак того, что конкретно это приложение опасно. Нажмите «Всё равно установить».
-        </span>
-      </li>
-      <li>Дождитесь завершения установки.</li>
-      <li>Запустите Genesis Кодекс+ с главного экрана. При первом запуске приложение распакует базу актов — это может занять до минуты.</li>
-    </ol>
-  </section>
-
-  <section id="verify">
-    <h3>Проверка подлинности</h3>
-    <div class="panel">
-      <div class="checksum-row">
-        <code class="sha" id="sha256-value">dacb797c848b5ec55e7e8851171ddba4383ae7883208794ff583fb2118af8fa2</code>
-        <button class="copy-btn" id="copyBtn" type="button" onclick="copyChecksum()">Копировать</button>
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Как установить</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <div class="step-title">Нажмите «Скачать APK».</div>
       </div>
-      <p class="verify-note">Сверьте эту сумму с SHA-256 скачанного файла, чтобы убедиться, что APK не был подменён или повреждён при загрузке.</p>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div class="step-title">Откройте скачанный файл в папке «Загрузки».</div>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <div class="step-title">Разрешите установку из этого источника, если Android спросит.</div>
+      </div>
+      <div class="step">
+        <span class="step-num">04</span>
+        <div>
+          <div class="step-title">Нажмите «Всё равно установить» на предупреждении Play Protect.</div>
+          <span class="step-note">Это стандартное предупреждение Android для приложений, установленных не из Google Play; оно появляется независимо от содержимого приложения.</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">05</span>
+        <div class="step-title">Готово. Интернет для работы приложения не нужен.</div>
+      </div>
     </div>
   </section>
 
-  <section id="disclaimer">
-    <p class="disclaimer">
-      Приложение подготовлено независимо и не является официальным изданием.
-      Тексты актов приведены в информационных целях и могут не отражать
-      самые последние изменения. Для официального использования — в суде,
-      органах власти, при подаче документов — руководствуйтесь текстами,
-      опубликованными в Сборнике актов законодательства ПМР (САЗ) и на
-      официальных ресурсах органов государственной власти ПМР.
-    </p>
+  <section id="verify">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2>Проверка подлинности</h2>
+    </div>
+    <div class="verify-panel">
+      <div class="verify-label">SHA-256 · GENESIS-KODEKS-1.0.0.APK</div>
+      <div class="checksum-row">
+        <code class="sha" id="sha256-value">ac2265a607b5ba089371199f43b28ac28ed3561b222eacf4885cb2fdfd4d6195</code>
+        <button class="copy-btn" id="copy-btn" type="button">Скопировать</button>
+      </div>
+      <p class="verify-note">Сверив контрольную сумму скачанного файла с этой, вы убедитесь, что файл не подменён.</p>
+    </div>
   </section>
 
-  <section id="changelog">
-    <h3>История версий</h3>
-    <ul class="changelog" id="changelog-list">
-      <li>
-        <div class="changelog-head">
-          <span class="changelog-version">1.0.0</span>
-          <span class="changelog-date">08.08.2026</span>
+  <section id="updates">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2>Обновления</h2>
+    </div>
+    <div class="updates-grid">
+      <p class="updates-note">
+        Приложение само проверяет наличие новой версии и показывает уведомление,
+        когда она доступна.<span id="telegram-note"></span>
+      </p>
+      <p class="disclaimer">
+        Официальным опубликованием актов законодательства ПМР является Сборник
+        актов законодательства (САЗ). Приложение носит справочный характер.
+        Перед применением нормы сверяйтесь с официальным источником.
+      </p>
+    </div>
+  </section>
+
+  <section id="history">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2>История версий</h2>
+    </div>
+    <div id="history-list">
+      <div class="history-row">
+        <div>
+          <span class="history-version">1.0.0</span>
+          <span class="history-date">15 августа 2026</span>
         </div>
-        <div class="changelog-notes">Первый публичный релиз: офлайн-база актов законодательства ПМР, полнотекстовый поиск, переход по перекрёстным ссылкам, копирование статей с реквизитами, закладки и заметки, светлая и тёмная темы.</div>
-      </li>
-    </ul>
+        <div class="history-changes">Первый выпуск. Конституция ПМР и Гражданский кодекс ПМР.</div>
+      </div>
+    </div>
   </section>
 
   <footer>
-    Genesis Кодекс+ — независимый проект. Не является официальным ресурсом органов государственной власти ПМР.
+    <span class="footer-brand">GENESIS INDUSTRIES CORP · 2026</span>
+    <a class="js-download" href="https://github.com/andronakyandrew/kodeks-releases/releases/download/v1.0.0/genesis-kodeks-1.0.0.apk">Скачать APK</a>
   </footer>
 
 </main>
@@ -456,72 +1000,104 @@
   // Без JavaScript остаётся статическая разметка выше — она уже содержит
   // те же значения.
   (function () {
+    var MONTHS = ["января", "февраля", "марта", "апреля", "мая", "июня",
+      "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+
+    function formatRuDate(iso) {
+      var p = iso.split("-");
+      return parseInt(p[2], 10) + " " + MONTHS[parseInt(p[1], 10) - 1] + " " + p[0];
+    }
+
+    function pluralActs(n) {
+      var mod10 = n % 10;
+      var mod100 = n % 100;
+      if (mod10 === 1 && mod100 !== 11) return "акт";
+      if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return "акта";
+      return "актов";
+    }
+
     function $(id) { return document.getElementById(id); }
 
-    $("downloadBtn").setAttribute("href", RELEASE.downloadUrl);
-    $("meta-version").textContent = "Версия " + RELEASE.version;
-    $("meta-size").textContent = RELEASE.sizeMb + " МБ";
-    $("meta-date").textContent = "сборка от " + RELEASE.buildDate;
-    $("meta-minos").textContent = "Android " + RELEASE.minAndroid + " и выше";
+    document.querySelectorAll(".js-download").forEach(function (a) {
+      a.setAttribute("href", RELEASE.apkUrl);
+    });
+
+    $("nav-version").textContent = "v" + RELEASE.version;
+    $("cta-size").textContent = RELEASE.sizeMb + " МБ";
+    $("spec-version").textContent = RELEASE.version;
+    $("spec-date").textContent = formatRuDate(RELEASE.date);
+    $("spec-size").textContent = RELEASE.sizeMb + " МБ";
+    $("spec-minos").textContent = "Android " + RELEASE.minAndroid + "+";
 
     var tbody = $("acts-table-body");
     tbody.innerHTML = "";
     RELEASE.acts.forEach(function (act) {
       var tr = document.createElement("tr");
       tr.innerHTML =
-        "<td>" + act.name + "</td>" +
-        "<td>" + act.number + "</td>" +
-        "<td>" + act.date + "</td>" +
-        "<td class=\"num\">" + act.articles + "</td>";
+        "<td data-label=\"Акт\">" + act.title + "</td>" +
+        "<td data-label=\"Номер\">" + (act.number || "") + "</td>" +
+        "<td data-label=\"Дата редакции\">" + (act.redaction || "") + "</td>" +
+        "<td class=\"num\" data-label=\"Статей\">" + act.articles + "</td>";
       tbody.appendChild(tr);
     });
+    $("acts-caption").textContent = RELEASE.acts.length + " " +
+      pluralActs(RELEASE.acts.length) +
+      " · по состоянию на дату сборки, указанную выше";
 
     $("sha256-value").textContent = RELEASE.sha256;
 
-    var list = $("changelog-list");
+    if (RELEASE.telegramUrl) {
+      var a = document.createElement("a");
+      a.href = RELEASE.telegramUrl;
+      a.textContent = "Telegram-канал с анонсами";
+      $("telegram-note").textContent = " Анонсы также публикуются в ";
+      $("telegram-note").appendChild(a);
+      $("telegram-note").appendChild(document.createTextNode("."));
+    }
+
+    var list = $("history-list");
     list.innerHTML = "";
-    RELEASE.changelog.forEach(function (entry) {
-      var li = document.createElement("li");
-      li.innerHTML =
-        "<div class=\"changelog-head\">" +
-          "<span class=\"changelog-version\">" + entry.version + "</span>" +
-          "<span class=\"changelog-date\">" + entry.date + "</span>" +
+    RELEASE.history.forEach(function (entry) {
+      var row = document.createElement("div");
+      row.className = "history-row";
+      row.innerHTML =
+        "<div>" +
+          "<span class=\"history-version\">" + entry.version + "</span>" +
+          "<span class=\"history-date\">" + formatRuDate(entry.date) + "</span>" +
         "</div>" +
-        "<div class=\"changelog-notes\">" + entry.notes + "</div>";
-      list.appendChild(li);
+        "<div class=\"history-changes\"></div>";
+      row.querySelector(".history-changes").textContent = entry.changes;
+      list.appendChild(row);
+    });
+
+    $("copy-btn").addEventListener("click", function () {
+      var text = RELEASE.sha256;
+      var btn = $("copy-btn");
+      var onDone = function (ok) {
+        btn.textContent = ok ? "Скопировано" : "Не удалось скопировать";
+        setTimeout(function () { btn.textContent = "Скопировать"; }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { onDone(true); }, function () { onDone(false); });
+        return;
+      }
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand("copy");
+        onDone(true);
+      } catch (e) {
+        onDone(false);
+      }
+      document.body.removeChild(ta);
     });
   })();
-
-  function copyChecksum() {
-    var text = RELEASE.sha256;
-    var btn = document.getElementById("copyBtn");
-    var reset = function () {
-      setTimeout(function () { btn.textContent = "Копировать"; }, 2000);
-    };
-    var onDone = function (ok) {
-      btn.textContent = ok ? "Скопировано" : "Не удалось скопировать";
-      reset();
-    };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function () { onDone(true); }, function () { onDone(false); });
-      return;
-    }
-    var ta = document.createElement("textarea");
-    ta.value = text;
-    ta.setAttribute("readonly", "");
-    ta.style.position = "fixed";
-    ta.style.opacity = "0";
-    document.body.appendChild(ta);
-    ta.focus();
-    ta.select();
-    try {
-      document.execCommand("copy");
-      onDone(true);
-    } catch (e) {
-      onDone(false);
-    }
-    document.body.removeChild(ta);
-  }
 </script>
 </body>
 </html>
