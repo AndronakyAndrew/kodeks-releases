@@ -1,10 +1,10 @@
 {
-  "latest_version": "1.0.0",
-  "version_code": 1,
-  "released_at": "2026-08-08T15:19:29Z",
-  "apk_url": "https://github.com/AndronakyAndrew/kodeks-releases/releases/download/v1.0.0/genesis-kodeks-1.0.0.apk",
-  "sha256": "ac2265a607b5ba089371199f43b28ac28ed3561b222eacf4885cb2fdfd4d6195",
-  "size_bytes": 42954495,
-  "min_supported_version_code": 1,
-  "changelog_ru": "Первый публичный релиз Genesis Кодекс+.\n\n- офлайн-база законодательства ПМР: Конституция и Гражданский кодекс, работает без интернета\n- полнотекстовый поиск по всем актам\n- переходы по перекрёстным ссылкам между статьями\n- закладки с папками и заметки к статьям\n- копирование статьи с реквизитами\n- светлая и тёмная темы, настройка размера шрифта"
+  "latest_version": "1.0.1",
+  "version_code": 2,
+  "released_at": "2026-08-09T05:28:59Z",
+  "apk_url": "https://github.com/AndronakyAndrew/kodeks-releases/releases/download/v1.0.1/genesis-kodeks-1.0.1.apk",
+  "sha256": "1844bb78cd1517506bd9b79eba784af9ebcf0af49e97d48d51bd126713840f6e",
+  "size_bytes": 43036415,
+  "min_supported_version_code": 2,
+  "changelog_ru": "Что нового в 1.0.1\n\n- Исправлено переключение темы: некоторые экраны раньше не реагировали на смену светлой/тёмной темы — теперь оформление меняется единообразно во всём приложении.\n- В заголовке экрана акта теперь отображается название документа, а не технический адрес страницы."
 }
