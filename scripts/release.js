@@ -40,6 +40,55 @@ function pluralActs(n) {
   return "актов";
 }
 
+function escapeHtml(text) {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+// changelog из tool/release.sh — обычный текст (см. release.json), не
+// markdown: абзацы разделены пустой строкой, пункты списка — строки,
+// начинающиеся с "- ". Здесь и в идентичной функции в клиентском
+// <script> внизу docs/index.html он превращается в <p>/<ul> для
+// секции "История версий" — те же правила, что применяет GitHub к
+// тексту релиза (--notes-file), но нам нужен именно HTML, не markdown.
+function parseChangesHtml(changes) {
+  const lines = changes.split("\n");
+
+  // Первая строка вида "Что нового в X.Y.Z" дублирует номер версии,
+  // который и так показан рядом (history-version) — не повторяем её.
+  if (/^Что нового в /.test(lines[0] || "")) {
+    lines.shift();
+    if (lines[0] === "") lines.shift();
+  }
+
+  const blocks = [];
+  let current = [];
+  for (const line of lines) {
+    if (line.trim() === "") {
+      if (current.length) blocks.push(current);
+      current = [];
+    } else {
+      current.push(line);
+    }
+  }
+  if (current.length) blocks.push(current);
+
+  return blocks
+    .map((block) => {
+      const isList = block.every((line) => /^-\s+/.test(line));
+      if (isList) {
+        const items = block
+          .map((line) => `<li>${escapeHtml(line.replace(/^-\s+/, ""))}</li>`)
+          .join("");
+        return `<ul>${items}</ul>`;
+      }
+      return `<p>${escapeHtml(block.join(" "))}</p>`;
+    })
+    .join("");
+}
+
 function loadData() {
   if (!fs.existsSync(DATA_PATH)) fail(`не найден ${DATA_PATH}`);
   let data;
@@ -159,7 +208,7 @@ function buildHistoryRows(data) {
           <span class="history-version">${h.version}</span>
           <span class="history-date">${formatRuDate(h.date)}</span>
         </div>
-        <div class="history-changes">${h.changes}</div>
+        <div class="history-changes">${parseChangesHtml(h.changes)}</div>
       </div>`)
     .join("\n");
 }

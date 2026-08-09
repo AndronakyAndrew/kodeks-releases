@@ -673,6 +673,42 @@
     color: var(--text-secondary);
   }
 
+  .history-changes p {
+    margin: 0 0 10px;
+  }
+
+  .history-changes ul {
+    margin: 0 0 10px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .history-changes li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 6px;
+  }
+
+  .history-changes li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 6px;
+    height: 6px;
+    border-radius: 1px;
+    background: var(--accent);
+  }
+
+  .history-changes p:last-child,
+  .history-changes ul:last-child {
+    margin-bottom: 0;
+  }
+
+  .history-changes li:last-child {
+    margin-bottom: 0;
+  }
+
   /* Футер */
 
   footer {
@@ -1105,33 +1141,21 @@
           <span class="history-version">1.1.0</span>
           <span class="history-date">9 августа 2026</span>
         </div>
-        <div class="history-changes">Что нового в 1.1.0
-
-Первое крупное обновление после релиза.
-
-- Добавлены все конституционные законы ПМР (12 актов) — в их числе законы о Правительстве, о судебной системе, о гражданстве, о Конституционном суде.
-- Добавлено законодательство о государственной службе: о государственной гражданской службе, о противодействии коррупции, об обращениях граждан, об актах законодательства.
-- Добавлен Кодекс об административных правонарушениях.
-- Исправлена работа без интернета: теперь в приложение можно полностью войти и пользоваться им офлайн. Известное исключение — список дел пока не отображается без интернета, работа над этим продолжается.
-
-Всего в базе: 19 актов.</div>
+        <div class="history-changes"><p>Первое крупное обновление после релиза.</p><ul><li>Добавлены все конституционные законы ПМР (12 актов) — в их числе законы о Правительстве, о судебной системе, о гражданстве, о Конституционном суде.</li><li>Добавлено законодательство о государственной службе: о государственной гражданской службе, о противодействии коррупции, об обращениях граждан, об актах законодательства.</li><li>Добавлен Кодекс об административных правонарушениях.</li><li>Исправлена работа без интернета: теперь в приложение можно полностью войти и пользоваться им офлайн. Известное исключение — список дел пока не отображается без интернета, работа над этим продолжается.</li></ul><p>Всего в базе: 19 актов.</p></div>
       </div>
       <div class="history-row">
         <div>
           <span class="history-version">1.0.1</span>
           <span class="history-date">9 августа 2026</span>
         </div>
-        <div class="history-changes">Что нового в 1.0.1
-
-- Исправлено переключение темы: некоторые экраны раньше не реагировали на смену светлой/тёмной темы — теперь оформление меняется единообразно во всём приложении.
-- В заголовке экрана акта теперь отображается название документа, а не технический адрес страницы.</div>
+        <div class="history-changes"><ul><li>Исправлено переключение темы: некоторые экраны раньше не реагировали на смену светлой/тёмной темы — теперь оформление меняется единообразно во всём приложении.</li><li>В заголовке экрана акта теперь отображается название документа, а не технический адрес страницы.</li></ul></div>
       </div>
       <div class="history-row">
         <div>
           <span class="history-version">1.0.0</span>
           <span class="history-date">8 августа 2026</span>
         </div>
-        <div class="history-changes">Первый выпуск. Конституция ПМР и Гражданский кодекс ПМР.</div>
+        <div class="history-changes"><p>Первый выпуск. Конституция ПМР и Гражданский кодекс ПМР.</p></div>
       </div>
     </div>
   </section>
@@ -1162,6 +1186,44 @@
       if (mod10 === 1 && mod100 !== 11) return "акт";
       if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return "акта";
       return "актов";
+    }
+
+    function escapeHtml(text) {
+      return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    // Идентична parseChangesHtml() в scripts/release.js (см. её
+    // комментарий) — та же разметка, что уже стоит в статическом HTML
+    // ниже, просто выполняется в браузере при включённом JavaScript.
+    function parseChangesHtml(changes) {
+      var lines = changes.split("\n");
+      if (/^Что нового в /.test(lines[0] || "")) {
+        lines.shift();
+        if (lines[0] === "") lines.shift();
+      }
+
+      var blocks = [];
+      var current = [];
+      lines.forEach(function (line) {
+        if (line.trim() === "") {
+          if (current.length) blocks.push(current);
+          current = [];
+        } else {
+          current.push(line);
+        }
+      });
+      if (current.length) blocks.push(current);
+
+      return blocks.map(function (block) {
+        var isList = block.every(function (line) { return /^-\s+/.test(line); });
+        if (isList) {
+          var items = block.map(function (line) {
+            return "<li>" + escapeHtml(line.replace(/^-\s+/, "")) + "</li>";
+          }).join("");
+          return "<ul>" + items + "</ul>";
+        }
+        return "<p>" + escapeHtml(block.join(" ")) + "</p>";
+      }).join("");
     }
 
     function $(id) { return document.getElementById(id); }
@@ -1214,7 +1276,7 @@
           "<span class=\"history-date\">" + formatRuDate(entry.date) + "</span>" +
         "</div>" +
         "<div class=\"history-changes\"></div>";
-      row.querySelector(".history-changes").textContent = entry.changes;
+      row.querySelector(".history-changes").innerHTML = parseChangesHtml(entry.changes);
       list.appendChild(row);
     });
 
